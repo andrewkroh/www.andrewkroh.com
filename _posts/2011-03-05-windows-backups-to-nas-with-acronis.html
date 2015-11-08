@@ -1,0 +1,38 @@
+---
+layout: post
+status: publish
+published: true
+title: Windows Backups to NAS with Acronis
+author:
+  display_name: Andrew Kroh
+  login: akroh
+  email: andy@crowbird.com
+  url: ''
+author_login: akroh
+author_email: andy@crowbird.com
+wordpress_id: 181
+wordpress_url: https://blog.crowbird.com/blog/?p=181
+date: '2011-03-05 02:14:38 -0500'
+date_gmt: '2011-03-05 06:14:38 -0500'
+categories:
+- Uncategorized
+tags:
+- acronis
+comments: []
+---
+<p>What do you do when you power on your PC all you hear is a click, click, click coming from the hard disk and it never boots? Unless you have a backup it's game over for any data on that disk; you just lost your pictures, music, movies, emails, and applications. That's a position you'll never be in if you have a sound backup strategy. Acronis True Image Home can help you achieve this goal.</p>
+<p>I recently put Acronis True Image Home 2011 to the test as you should any backup software you are relying on. I tested the most important features to make sure they work.</p>
+<ol>
+<li>Perform nightly backups (full and incremental) to a network drive (or USB drive).<&#47;li>
+<li>Restore individual files from the backups (you can select which version).<&#47;li>
+<li>Restore an entire disk (even if it's a different size).<&#47;li><br />
+<&#47;ol></p>
+<h4>Performing Backups to Network<&#47;h4><br />
+Installing Acronis was simple and painless. Once installed I created a scheduled nightly backup of the entire disk that gets backed to a network drive. The task is configured to first perform a full backup each week followed by differential backup for the remainder of the week. I kicked off a full backup after creating the scheduled task; it took about 20 minutes to backup my 15GB disk that contained 10GB of data. Acronis created a 5.5GB .tib file for the backup. This is a proprietary format that can only be opened by the Acronis software on Windows. I kicked off a differential backup two days later that resulted in a sequentially named .tib file that was 600MB.</p>
+<p>[caption id="attachment_186" align="alignnone" width="828"]<a href="&#47;wp-content&#47;uploads&#47;2013&#47;05&#47;acronis-main-window.png"><img src="&#47;wp-content&#47;uploads&#47;2013&#47;05&#47;acronis-main-window.png" alt="Figure 1: Main screen on the Vista like Acronis user interface. Showing one backup named VMwareHD." width="828" height="691" class="size-full wp-image-186" &#47;><&#47;a> Figure 1: Main screen on the Vista like Acronis user interface. Showing one backup named VMwareHD.[&#47;caption]</p>
+<h4>Individual File Recovery<&#47;h4><br />
+After creating the backup I wanted to test individual file recovery. The only way to do this is from the Acronis user interface. You have two options. You can use the file browser in Acronis which will allow you to view the version history of the file and select the one you want then recover to the the original location or a location of you choosing. Or you can mount one of the .tib files to the filesystem and recover the files in that version using Windows explorer.</p>
+<p>[caption id="attachment_185" align="alignnone" width="828"]<a href="&#47;wp-content&#47;uploads&#47;2013&#47;05&#47;acronis-file-recovery.png"><img src="&#47;wp-content&#47;uploads&#47;2013&#47;05&#47;acronis-file-recovery.png" alt="Figure 2: Acronis backup explorer with version history for recovering individual files." width="828" height="691" class="size-full wp-image-185" &#47;><&#47;a> Figure 2: Acronis backup explorer with version history for recovering individual files.[&#47;caption]</p>
+<h4>Full System Recovery<&#47;h4><br />
+The true test of a backup system is full system recovery. I tested restoring my backup to a larger disk. First, boot the system up using an Acronis recovery CD. Then you select the location of your backups which in my case was on the network. After making the selection you can choose what to restore. Following the user manual's directions for restoring to a larger disk, I selected to restore the C drive and then opted to modify the partition size to take full advantage of the disk space available. I clicked restore and things were finished in about 20 minutes. I closed the Acronis utility, removed the boot CD, and booted into my restored copy of Windows.</p>
+<p>Acronis was simple to use and performs well. It has plenty of other features, but these are the important ones for me. I'm now using Acronis True Image Home to backup all my Windows PCs to a NAS.</p>

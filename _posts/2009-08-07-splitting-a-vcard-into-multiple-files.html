@@ -1,0 +1,56 @@
+---
+layout: post
+status: publish
+published: true
+title: Splitting a vCard into Multiple Files
+author:
+  display_name: Andrew Kroh
+  login: akroh
+  email: andy@crowbird.com
+  url: ''
+author_login: akroh
+author_email: andy@crowbird.com
+wordpress_id: 178
+wordpress_url: https://blog.crowbird.com/blog/?p=178
+date: '2009-08-07 02:11:35 -0400'
+date_gmt: '2009-08-07 06:11:35 -0400'
+categories:
+- Uncategorized
+tags: []
+comments: []
+---
+<p>Recently I wanted to sync my contact list from Google Mail to my old Samsung Gleam SCH-U700 via Bluetooth. From Google Mail I exported a single vCard file containing 170 individual contacts. I tried to send the that single file to my phone, but the end result was that the phone only imported the first contact from the vCard. So I realized that I needed to split the vCard into multiple files where each contained only one contact. Since vCard is a stardard format I knew I could write a Perl script to do the work for me. Like any smart person, I first googled the problem, but all I found was a non-working Perl script. I fixed the script up and here it is.</p>
+<p>[perl title="Listing: vcard-splitter.pl"]<br />
+#!&#47;usr&#47;bin&#47;perl</p>
+<p># Perl script for splitting a vCard with multiple contacts<br />
+# into a series of vCards named vCardXXX.vcf.<br />
+#<br />
+# Adapted from:<br />
+# http:&#47;&#47;electrons.psychogenic.com&#47;modules&#47;arms&#47;art&#47;19&#47;MigratingPalmAddressBookstoLinuxiPAQs.php</p>
+<p>my $file = shift @ARGV || die "Please pass in the file name of your consolidated vcard.";</p>
+<p>die "Cannot open '$file': $!" unless (open(INFILE, "<$file"));</p>
+<p>my $contents; # Will hold entire vcard file contents.<br />
+{<br />
+    $&#47; = undef;              # undef record separator<br />
+    $contents = <INFILE>;    # slurp in whole file<br />
+}</p>
+<p>close(INFILE) || warn "Unable to close file: $!</p>
+<p># Create a file for each vcard found:<br />
+my $name = 0;<br />
+while ($contents =~ m&#47;(BEGIN:VCARD.*?END:VCARD)&#47;smg)<br />
+{<br />
+    # Contents of a single vcard file:<br />
+    my $aVcard = $1;</p>
+<p>    # Output to vcardNNN.txt file:<br />
+    if (open(OUTFILE, ">vcard$name.vcf"))<br />
+    {<br />
+        print OUTFILE $aVcard;<br />
+        close(OUTFILE);<br />
+        $name++;<br />
+    }<br />
+    else<br />
+    {<br />
+        warn "Could not write vcard$name.txt:  $!";<br />
+    }<br />
+}<br />
+[&#47;perl]</p>

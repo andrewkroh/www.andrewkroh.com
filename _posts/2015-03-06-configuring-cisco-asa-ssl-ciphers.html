@@ -1,0 +1,64 @@
+---
+layout: post
+status: publish
+published: true
+title: Configuring Cisco ASA SSL Ciphers
+author:
+  display_name: Andrew Kroh
+  login: akroh
+  email: andy@crowbird.com
+  url: ''
+author_login: akroh
+author_email: andy@crowbird.com
+wordpress_id: 258
+wordpress_url: https://blog.crowbird.com/?p=258
+date: '2015-03-06 11:49:28 -0500'
+date_gmt: '2015-03-06 15:49:28 -0500'
+categories:
+- Uncategorized
+tags: []
+comments: []
+---
+<p>To protect against SSL vulnerabilities it is important to disable SSLv3 and weak ciphers on your cisco ASA device.</p>
+<p>To enumerate the ciphers supported by the device I use an openssl wrapper script called <a href="https:&#47;&#47;github.com&#47;jvehent&#47;cipherscan">cipherscan<&#47;a> that is available on github. On a default Cisco ASA setup here is what ciphers are available.</p>
+<pre>bash-4.3$ .&#47;cipherscan sslvpn.example.com<br />
+.......<br />
+Target: sslvpn.example.com:443</p>
+<p>prio  ciphersuite         protocols    pfs_keysize<br />
+1     RC4-SHA             SSLv3,TLSv1<br />
+2     DHE-RSA-AES128-SHA  TLSv1        DH,1024bits<br />
+3     DHE-RSA-AES256-SHA  TLSv1        DH,1024bits<br />
+4     AES128-SHA          SSLv3,TLSv1<br />
+5     AES256-SHA          SSLv3,TLSv1<br />
+6     DES-CBC3-SHA        SSLv3,TLSv1</p>
+<p>Certificate: UNTRUSTED, 2048 bit, sha256WithRSAEncryption signature<br />
+TLS ticket lifetime hint: None<br />
+OCSP stapling: not supported<br />
+Server side cipher ordering<br />
+<&#47;pre></p>
+<p>To change the supported protocols and ciphers, login to the Cisco ASA via SSH. You can list the current SSL configuration with <code>show ssl<&#47;code> and then make the required changes.</p>
+<p>You should disable SSLv3 due to the POODLE vulnerability. And you should verify that you are using strong ciphers. I prefer to use ciphers that support PFS, but the Cisco AnyConnect IOS app for the SSL VPN <a href="http:&#47;&#47;www.cisco.com&#47;c&#47;en&#47;us&#47;td&#47;docs&#47;security&#47;vpn_client&#47;anyconnect&#47;anyconnect30&#47;administration&#47;guide&#47;anyconnectadmin30&#47;acmobiledevices.html#pgfId-1051726">does not support<&#47;a> the PFS ciphers so I had to include aes256-sha1 and aes128-sha1.</p>
+<pre>
+asa5505(config)# ssl client-version tlsv1-only<br />
+asa5505(config)# ssl server-version tlsv1<br />
+asa5505(config)# ssl encryption dhe-aes256-sha1 dhe-aes128-sha1 aes256-sha1 aes128-sha1</p>
+<p>asa5505# show ssl<br />
+Accept connections using SSLv2 or greater and negotiate to TLSv1<br />
+Start connections using TLSv1 only and negotiate to TLSv1 only<br />
+Enabled cipher order: dhe-aes256-sha1 dhe-aes128-sha1 aes256-sha1 aes128-sha1<br />
+<&#47;pre></p>
+<p>And finally verify the changes using cipherscan.</p>
+<pre>
+bash-4.3$ .&#47;cipherscan sslvpn.example.com<br />
+...<br />
+Target: sslvpn.example.com:443</p>
+<p>prio  ciphersuite         protocols  pfs_keysize<br />
+1     DHE-RSA-AES256-SHA  TLSv1      DH,1024bits<br />
+2     DHE-RSA-AES128-SHA  TLSv1      DH,1024bits<br />
+3     AES256-SHA          TLSv1<br />
+4     AES128-SHA          TLSv1</p>
+<p>Certificate: UNTRUSTED, 2048 bit, sha256WithRSAEncryption signature<br />
+TLS ticket lifetime hint: None<br />
+OCSP stapling: not supported<br />
+Server side cipher ordering<br />
+<&#47;pre></p>

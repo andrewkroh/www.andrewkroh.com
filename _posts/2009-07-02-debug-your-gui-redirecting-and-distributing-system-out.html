@@ -1,0 +1,44 @@
+---
+layout: post
+status: publish
+published: true
+title: 'Debug Your GUI: Redirecting and Distributing System.out'
+author:
+  display_name: Andrew Kroh
+  login: akroh
+  email: andy@crowbird.com
+  url: ''
+author_login: akroh
+author_email: andy@crowbird.com
+wordpress_id: 45
+wordpress_url: https://blog.crowbird.com/blog/?p=45
+date: '2009-07-02 22:48:22 -0400'
+date_gmt: '2009-07-03 03:48:22 -0400'
+categories:
+- Categories
+tags:
+- java
+comments: []
+---
+<p>Recently I was reading&nbsp;<i>Swing Hacks<&#47;i>&nbsp;by by&nbsp;<a href="http:&#47;&#47;www.oreillynet.com&#47;pub&#47;au&#47;2200?x-t=book.view" rel="nofollow">Joshua Marinacci<&#47;a>&nbsp;and&nbsp;<a href="http:&#47;&#47;www.oreillynet.com&#47;pub&#47;au&#47;1045?x-t=book.view" rel="nofollow">Chris Adamson<&#47;a>&nbsp;(ISBN: 978-0-596-00907-6). I came across&nbsp;<b>Hack 95: Debug Your GUI<&#47;b>&nbsp;which basically recommends building a dialog window containing a JTextArea that has the standard output streams routed to it. I thought this hack could be useful for debugging deployed applications since it makes it very easy for customers to get access to the console output.</p>
+<p>The problem with this is that during development I like to look at the console output in Eclipse or from the terminal where I launched the application. So in order to get the standard streams routed to both the the normal standard output and to the debug dialog window I designed a&nbsp;<a href="http:&#47;&#47;blog.crowbird.com&#47;java&#47;redirecting-distributing-system-out&#47;StandardStreamDistributor.java" rel="nofollow">utility class<&#47;a>. The utility class redirects the standard streams to a custom OutputStream which then distributes the output to the normal standard output&#47;error and also to any additional registered listeners like a debug dialog window.</p>
+<table style="border-color: #888888; border-width: 1px; border-collapse: collapse;" border="1" cellspacing="0">
+<tbody>
+<tr>
+<td><a href="&#47;wp-content&#47;uploads&#47;2013&#47;02&#47;debug_console.png"><img class="alignnone size-full wp-image-49" alt="debug_console" src="&#47;wp-content&#47;uploads&#47;2013&#47;02&#47;debug_console.png" width="582" height="204" &#47;><&#47;a><&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td>Figure 1: Custom Debug Console in Swing<&#47;td><br />
+<&#47;tr><br />
+<&#47;tbody><br />
+<&#47;table></p>
+<table style="border-color: #888888; border-width: 1px; border-collapse: collapse;" border="1" cellspacing="0">
+<tbody>
+<tr>
+<td><a href="&#47;wp-content&#47;uploads&#47;2013&#47;02&#47;eclipse_console.png"><img class="alignnone size-full wp-image-50" alt="eclipse_console" src="&#47;wp-content&#47;uploads&#47;2013&#47;02&#47;eclipse_console.png" width="610" height="274" &#47;><&#47;a><&#47;td><br />
+<&#47;tr></p>
+<tr>
+<td>Figure 2: Eclipse Console Output<&#47;td><br />
+<&#47;tr><br />
+<&#47;tbody><br />
+<&#47;table></p>
