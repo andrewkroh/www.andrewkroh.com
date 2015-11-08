@@ -18,5 +18,4 @@ env:
   - secure: SUmnMNimG0BfaNcasOY4U4ka4uzxVqEF4Tpox4eo07Lk1yknRLTZl6FdMApJC4G4JlRaME/gCF6EH1TGm7AizqfsjytDjsiMYzllXTEexU4eZiWnknFKVioDWCa7URXcuo28lM17cVA4wUI1GxBDLiO9lBvau4HiXz5+zD47m/78WQYXqnNdLvsUI8SFRSZExob35ez0hSI/KJQHuuFwOWCbV1ymXsYpfw7Ii3zKep/WcztbAsgti/cRdatnx0aJkxB/h0e/+dXB8nEbakUVsJhTtGW6aqgVn/In2N+tViBTXeyFHJgX3lzCmnHezLTR/95MoC7hQL5BLgqFgxaMwaRuUAmZvEpx8WN1iq4mjmkl5TM3VQFzPfgsIxn2CJWSW6hnW+aIXaw/uCwY659B6WczdbK13odfek3qRlNBm2CWqcTQ8C8UWG3JGfNmqMtTTDaivVxrkFC4/OUQR0UmJRe3pXF/ycgX05nKxX0FMwTHczU/eo6Q3nxyOLEhaHjwC/AiUhcolsTJcuwBQ4SdiRBxU7/sB9v/6PLy1Rwr7DEQMDSveP1RowFAlhgPhmTlw53EkS10/tSAiXbSE3z3zo5wlR5GbZfsFHSXbITaP42o6y16frUChm8gkX1Aa2580CIfbsrEmJ0iHwOpNQd8htlxnWVaF4WZOilLK36WTN0=
 
 after_success:
-  - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "staging" ]; then make stage; fi
   - if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ];  then make prod; fi
