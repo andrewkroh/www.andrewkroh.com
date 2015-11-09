@@ -1,6 +1,6 @@
 site:
 	bundler exec jekyll build
-	#bundle exec htmlproof ./_site  --disable-external
+	bundle exec htmlproof ./_site  --disable-external
 
 clean:
 	rm -rf _site

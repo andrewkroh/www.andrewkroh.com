@@ -7,9 +7,8 @@ author: Andrew Kroh
 date: '2011-07-09 12:00:03 -0400'
 date_gmt: '2011-07-09 16:00:03 -0400'
 categories:
-- Categories
+- uncategorized
 tags: []
-comments: []
 ---
 The problem with hosting a domain on a dynamic IP is that when your IP address changes your domain becomes inaccessible until you update the DNS record with your new IP. Hosting a domain on a dynamic IP address can be done easily if you use DDNS (Dynamic Domain Name Service) and can afford a few minutes of downtime. DNS records can be automatically updated via DDNS when the server's IP address changes.
 

@@ -25,6 +25,7 @@ logo: "/assets/logo.png"
 markdown: kramdown
 kramdown:
   input: GFM
+  hard_wrap: false
 paginate: 5
 paginate_path: "/page:num/"
 
