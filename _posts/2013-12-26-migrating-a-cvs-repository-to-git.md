@@ -3,6 +3,7 @@ layout: post
 status: publish
 published: true
 title: Migrating a CVS Repository to Git
+excerpt: How to migrate a CVS repository to Git using cvs2git.
 author: Andrew Kroh
 date: '2013-12-26 12:08:51 -0500'
 date_gmt: '2013-12-26 16:08:51 -0500'
@@ -34,7 +35,7 @@ cvs2git --blobfile=cvs2git-tmp/git-blob.dat --dumpfile=cvs2git-tmp/git-dump.dat 
 {% endhighlight %}
 
 cvs2git only migrates history so you need to add all the files to Git yourself.  
-  
+
 {% highlight bash %}  
 cvs co component  
 cd component  

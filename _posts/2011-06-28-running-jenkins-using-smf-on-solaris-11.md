@@ -12,7 +12,10 @@ tags:
 - solaris11
 ---
 
-Jenkins (formerly known as Hudson) is a continuous integration tool. Installing Jenkins as a daemon service on Solaris 11 is pretty simple. Below are the steps I took to get it up and running using SMF in Solaris 11. SMF or Service Management Facility is the default way to manage services in Solaris 10 and 11.
+Jenkins (formerly known as Hudson) is a continuous integration tool. Installing
+Jenkins as a daemon service on Solaris 11 is pretty simple. Below are the steps
+I took to get it up and running using SMF in Solaris 11. SMF or Service
+Management Facility is the default way to manage services in Solaris 10 and 11.
 
 #### Create New User to Run Jenkins
 
@@ -40,12 +43,12 @@ Create a .bashrc with the appropriate settings for your jenkins user.
 typeset +x PS1="\u@\h:\w\\$ "
 alias l='ls -lah'
 alias cdh='cd ~'
- 
+
 # CVS over SSH Configuration (assuming local server)
 host=`hostname`
 export CVS_RSH=ssh
 export CVSROOT=:ext:jenkins@$host:/var/cvs
- 
+
 # Gradle Options
 GRADLE_OPTS="-Dorg.gradle.daemon=true"
 {% endhighlight %}
@@ -57,9 +60,9 @@ Create a start_jenkins.sh script.
 source /export/home/jenkins/.bashrc
 HTTP_HOST="127.0.0.1"
 HTTP_PORT="7777"
- 
+
 export JENKINS_HOME=/export/home/jenkins/workspace
- 
+
 java -Dmail.smtp.starttls.enable=true -jar /export/home/jenkins/jenkins.war --prefix=/jenkins --httpListenAddress=$HTTP_HOST --httpPort=$HTTP_PORT
 {% endhighlight %}
 
@@ -100,37 +103,37 @@ Listing: `/var/svc/manifest/application/jenkins.xml`
 
 {% highlight xml %}
 <?xml version='1.0'?>
- 
+
 <!DOCTYPE service_bundle SYSTEM '/usr/share/lib/xml/dtd/service_bundle.dtd.1'>
- 
+
 <service_bundle type="manifest" name="Jenkins">
     <service name="application/jenkins" type="service" version="1">
        <create_default_instance enabled="false"/>
        <single_instance/>
- 
+
        <method_context>
            <method_credential user='jenkins' group='jenkins'/>
- 
+
            <method_environment>
                <envvar name='PATH' value='/usr/bin:/usr/local/bin'/>
            </method_environment>
        </method_context>
- 
+
        <exec_method type="method" name="start" exec="/export/home/jenkins/start_jenkins.sh" timeout_seconds="0"/>
- 
+
        <exec_method type="method" name="stop" exec=":kill -TERM" timeout_seconds="30"/>
- 
+
        <property_group name='startd' type='framework'>
            <propval name='duration' type='astring' value='child'/>
        </property_group>
- 
+
        <stability value="Evolving"/>
- 
+
        <template>
            <common_name>
                <loctext xml:lang='C'>Jenkins Continuous Build Server</loctext>
            </common_name>
- 
+
            <documentation>
                <doc_link name='jenkins-ci.org' uri='http://jenkins-ci.org/'/>
            </documentation>
@@ -177,11 +180,10 @@ to access Jenkins.
 # Reverse proxy to Jenkins:
 ProxyPass /jenkins http://localhost:7777/jenkins
 ProxyPassReverse /jenkins http://localhost:7777/jenkins
- 
+
 # Allow access to this proxy to everyone:
 <Proxy http://localhost:7777/jenkins*>
     Order deny,allow
     Allow from all
 </Proxy>
 {% endhighlight %}
-

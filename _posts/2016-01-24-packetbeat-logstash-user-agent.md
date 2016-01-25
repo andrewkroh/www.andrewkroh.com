@@ -2,7 +2,9 @@
 layout: post
 title: Parsing User Agent strings from Packetbeat
 cover: /assets/uploads/2016/kibana-user-agent-dark.png
+excerpt: How to parse User-Agent strings from Packetbeat using Logstash.
 published: true
+author: Andrew Kroh
 date: '2016-01-24 16:10:00 -5000'
 categories:
   - beats

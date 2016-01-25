@@ -11,14 +11,14 @@ categories:
 tags:
   - java
 ---
-Have you ever wanted to display a popup to enter text or choose a color?
-Well if you have then you probably know that Swing does not have a component
-with this functionality. There is the JPopupMenu, but if you add components to
-it that menu will become hidden when any of the added components gain focus. I
-created a new component that displays a JPanel within a JWindow. The JWindow
-will hide itself when it loses focus, a click occurs outside of the JWindow,
-or the JWindow's ancestor moves. A demo is worth a 1000 words. The demo was
-inspired by the SMS button on Google Voice.
+Have you ever wanted to display a popup to enter text or choose a color? Well if
+you have then you probably know that Swing does not have a component with this
+functionality. There is the JPopupMenu, but if you add components to it that
+menu will become hidden when any of the added components gain focus. I created a
+new component that displays a JPanel within a JWindow. The JWindow will hide
+itself when it loses focus, a click occurs outside of the JWindow, or the
+JWindow's ancestor moves. A demo is worth a 1000 words. The demo was inspired by
+the SMS button on Google Voice.
 
 [View Source](https://github.com/andrewkroh/crowbird-techblog/tree/master/swing-popup-window/src/main/java/com/krohinc/ui/util)
 

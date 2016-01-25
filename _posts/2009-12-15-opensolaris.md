@@ -10,27 +10,63 @@ categories:
 - solaris
 tags: []
 ---
-**Update (February 2011):** Oracle stopped contributing to the OpenSolaris project so it is basically dead. However you can use Oracle Solaris 11 Express at no cost under the Oracle Technology Network Developer license if you are developing, testing, or prototyping applications.
+**Update (February 2011):** Oracle stopped contributing to the OpenSolaris
+project so it is basically dead. However you can use Oracle Solaris 11 Express
+at no cost under the Oracle Technology Network Developer license if you are
+developing, testing, or prototyping applications.
 
-For a long time I have been using Gentoo Linux to run a multipurpose server in my home. I mainly use the server to backup data, host web pages, host a CVS server, and run a proxy server. The hardware is rather modest -- Celeron D 2.93GHz, 512MB, 500GB SATA.
+For a long time I have been using Gentoo Linux to run a multipurpose server in
+my home. I mainly use the server to backup data, host web pages, host a CVS
+server, and run a proxy server. The hardware is rather modest -- Celeron D
+2.93GHz, 512MB, 500GB SATA.
 
-As a data backup server I usually copy files to the server over samba and keep the the original on another machine. This keeps me protected in case of a drive failure. But as a backup strategy I'm not happy because I'd like to be able to move a file to backup server and delete the original. To ensure data on the backup server is protected against loss I need some sort of RAID (Redundant Array of Inexpensive Disks). I considered hardware RAID but ultimately ended up going with software RAID (mostly due to the cost difference).
+As a data backup server I usually copy files to the server over samba and keep
+the the original on another machine. This keeps me protected in case of a drive
+failure. But as a backup strategy I'm not happy because I'd like to be able to
+move a file to backup server and delete the original. To ensure data on the
+backup server is protected against loss I need some sort of RAID (Redundant
+Array of Inexpensive Disks). I considered hardware RAID but ultimately ended up
+going with software RAID (mostly due to the cost difference).
 
-While searching for the best way to implement software RAID I found OpenSolaris and ZFS. ZFS is OpenSolaris's file system which has features like snapshots, copy-on-write, RAID, automatic integrity checking, and automatic repair. Snapshots are similar to the Time Machine feature in Mac OS X. With all these features I thought it would be great to migrate and give Solaris a try.
+While searching for the best way to implement software RAID I found OpenSolaris
+and ZFS. ZFS is OpenSolaris's file system which has features like snapshots,
+copy-on-write, RAID, automatic integrity checking, and automatic repair.
+Snapshots are similar to the Time Machine feature in Mac OS X. With all these
+features I thought it would be great to migrate and give Solaris a try.
 
-I upgraded the computer to have 2.5 GB of RAM and purchased a second SATA drive of 1.5 TB. I had planned to use the new drive in conjunction with the old drive to create 500GB of redundant storage plus an addition 1TB of non-redundant storage. Unfortunately, I found that 1.5TB drive is too large for a 32-bit kernel under OpenSolaris and that it is not possible to create redundant storage using two different size drives without the excess size of the larger disk going unused. The maximum drive size supported by a 32-bit kernel on OpenSolaris is 1TB (assuming that the drive is using standard 512 byte blocks). See this [thread](http://opensolaris.org/jive/thread.jspa?messageID=418900) in the OpenSolaris forums.
+I upgraded the computer to have 2.5 GB of RAM and purchased a second SATA drive
+of 1.5 TB. I had planned to use the new drive in conjunction with the old drive
+to create 500GB of redundant storage plus an addition 1TB of non-redundant
+storage. Unfortunately, I found that 1.5TB drive is too large for a 32-bit
+kernel under OpenSolaris and that it is not possible to create redundant storage
+using two different size drives without the excess size of the larger disk going
+unused. The maximum drive size supported by a 32-bit kernel on OpenSolaris is
+1TB (assuming that the drive is using standard 512 byte blocks). See this
+[thread](http://opensolaris.org/jive/thread.jspa?messageID=418900) in the
+OpenSolaris forums.
 
-Ultimately I decided to purchase two 1TB drives and just run everything from them. I'll make use the old 500GB drive and the 1.5TB drive in another PC.
+Ultimately I decided to purchase two 1TB drives and just run everything from
+them. I'll make use the old 500GB drive and the 1.5TB drive in another PC.
 
 ### Services
 
 These are the services that the Solaris box provides.
 
-- **Web Server** - Sun Java System Web Server - Used to host ViewVC (a web based CVS browser), Gallery (open source photo album organizer), a custom PHP based video browser, and give web based access to backed up files.
-- **CVS** - Used to version control various software projects and configuration files.
-- **HTTP Proxy/Cache** - Squid - Used to proxy web traffic when I'm connected to a public network. I use ssh to create a secure tunnel to the proxy server so that my web traffic cannot be intercepted or analyzed while connected to a public network like a hotel or a Starbucks.
-- **SMB/CIFS** - Used to provide Windows and Mac access to the file server. Solaris has built in support for CIFS (Common Internet File System) and supports access control lists (ACLs).
-- **iSCSI** - Used to create an iSCSI drive on Mac that Time Machine can use as a backup disk. Mac OS X doesn't have an iSCSI Initiator built it but Studio Network Solutions has a free one.
+- **Web Server** - Sun Java System Web Server - Used to host ViewVC (a web based
+  CVS browser), Gallery (open source photo album organizer), a custom PHP based
+  video browser, and give web based access to backed up files.
+- **CVS** - Used to version control various software projects and configuration
+files.
+- **HTTP Proxy/Cache** - Squid - Used to proxy web traffic when I'm connected to
+a public network. I use ssh to create a secure tunnel to the proxy server so
+that my web traffic cannot be intercepted or analyzed while connected to a
+public network like a hotel or a Starbucks.
+- **SMB/CIFS** - Used to provide Windows and Mac access to the file server.
+Solaris has built in support for CIFS (Common Internet File System) and supports
+access control lists (ACLs).
+- **iSCSI** - Used to create an iSCSI drive on Mac that Time Machine can use as
+a backup disk. Mac OS X doesn't have an iSCSI Initiator built it but Studio
+Network Solutions has a free one.
 
 ### Setup
 
@@ -38,13 +74,15 @@ These are the services that the Solaris box provides.
 
 Install OpenSolaris from the downloadable Live CD. During the interactive
 installation choose one of the drives and use the whole disk. After installation
-is completed you will attach the second disk to create a mirror. Instructions are
-located [here](http://dlc.sun.com/osol/docs/content/2008.11/getstart/sliminstall.html).
+is completed you will attach the second disk to create a mirror. Instructions
+are located
+[here](http://dlc.sun.com/osol/docs/content/2008.11/getstart/sliminstall.html).
 
 #### Post-Installation Setup
 
 I like to customize my bash environment. Run these commands to add some aliases
-that are sourced when a bash shell is opened. Of course this is completely optional.
+that are sourced when a bash shell is opened. Of course this is completely
+optional.
 
 ```
 cd ~  
@@ -124,14 +162,16 @@ y
 
 Enter "y" and the disk will be formatted.
 
-The next step is to copy the volume table of contents from the first drive to the second drive.
+The next step is to copy the volume table of contents from the first drive to
+the second drive.
 
 ```
 $ prtvtoc /dev/rdsk/c8d0s0 | /usr/sbin/fmthard -s - /dev/rdsk/c9d0s0  
 fmthard: New volume table of contents now in place.
 ```
 
-Now the second disk is prepared to be attached to the storage pool to create a mirror.
+Now the second disk is prepared to be attached to the storage pool to create a
+mirror.
 
 ```
 $ zpool attach rpool c8d0s0 c9d0s0  
@@ -155,8 +195,8 @@ stage2 written to partition 0, 271 sectors starting at 50 (abs 32180)
 stage1 written to master boot sector
 ```
 
-The filesystem should be replicating data from the first disk to the second disk.
-You can check on progress by issuing the zpool status command.
+The filesystem should be replicating data from the first disk to the second
+disk. You can check on progress by issuing the zpool status command.
 
 ```
 $ zpool status  
@@ -220,7 +260,8 @@ Now mount the disk read-only.
 $ mount -F ext2fs -o ro /dev/rdsk/c8d0p0 /mount_location
 ```
 
-To unmount the partition use xumount so that the background NFS process is terminated.
+To unmount the partition use xumount so that the background NFS process is
+terminated.
 
 ```
 $ xumount /mount_location
