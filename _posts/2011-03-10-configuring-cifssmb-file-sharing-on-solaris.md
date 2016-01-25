@@ -25,7 +25,8 @@ Would you like to continue? [no]: yes
 Successfully joined JONESNET
 ```
 
-Now you have the server up and running, but no one will be able to log in. You need to modify /etc/pam.conf to add the following lines.
+Now you have the server up and running, but no one will be able to log in. You
+need to modify /etc/pam.conf to add the following lines.
 
 ```
 $ pfexec vim /etc/pam.conf  
@@ -59,5 +60,5 @@ $ cat /etc/dfs/sharetab
 
 #### References
 
-[Getting Started With the Solaris CIFS Service - Genunix](http://wiki.genunix.org:8080/wiki/index.php/Getting_Started_With_the_Solaris_CIFS_Service)
-
+[Getting Started With the Solaris CIFS Service -
+Genunix](http://wiki.genunix.org:8080/wiki/index.php/Getting_Started_With_the_Solaris_CIFS_Service)

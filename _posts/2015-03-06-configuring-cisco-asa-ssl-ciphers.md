@@ -3,6 +3,7 @@ layout: post
 status: publish
 published: true
 title: Configuring Cisco ASA SSL Ciphers
+excerpt: How to configure the SSL ciphers used by a Cisco ASA router.
 author: Andrew Kroh
 date: '2015-03-06 11:49:28 -0500'
 date_gmt: '2015-03-06 15:49:28 -0500'

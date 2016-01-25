@@ -13,9 +13,9 @@ tags:
 ---
 What do you do when you power on your PC all you hear is a click, click, click
 coming from the hard disk and it never boots? Unless you have a backup it's game
-over for any data on that disk; you just lost your pictures, music, movies, emails,
-and applications. That's a position you'll never be in if you have a sound backup
-strategy. Acronis True Image Home can help you achieve this goal.
+over for any data on that disk; you just lost your pictures, music, movies,
+emails, and applications. That's a position you'll never be in if you have a
+sound backup strategy. Acronis True Image Home can help you achieve this goal.
 
 I recently put Acronis True Image Home 2011 to the test as you should any backup
 software you are relying on. I tested the most important features to make sure they
@@ -31,11 +31,11 @@ Installing Acronis was simple and painless. Once installed I created a scheduled
 nightly backup of the entire disk that gets backed to a network drive. The task
 is configured to first perform a full backup each week followed by differential
 backup for the remainder of the week. I kicked off a full backup after creating
-the scheduled task; it took about 20 minutes to backup my 15GB disk that contained
-10GB of data. Acronis created a 5.5GB .tib file for the backup. This is a proprietary
-format that can only be opened by the Acronis software on Windows. I kicked off a
-differential backup two days later that resulted in a sequentially named .tib file
-that was 600MB.
+the scheduled task; it took about 20 minutes to backup my 15GB disk that
+contained 10GB of data. Acronis created a 5.5GB .tib file for the backup. This
+is a proprietary format that can only be opened by the Acronis software on
+Windows. I kicked off a differential backup two days later that resulted in a
+sequentially named .tib file that was 600MB.
 
 [![Figure 1: Main screen on the Vista like Acronis user interface. Showing one backup named VMwareHD.]({{ site.baseurl }}/assets/uploads/2013/05/acronis-main-window.png)]({{ site.baseurl }}/assets/uploads/2013/05/acronis-main-window.png)
 
@@ -69,4 +69,3 @@ CD, and booted into my restored copy of Windows.
 Acronis was simple to use and performs well. It has plenty of other features,
 but these are the important ones for me. I'm now using Acronis True Image
 Home to backup all my Windows PCs to a NAS.
-
