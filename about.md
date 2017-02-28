@@ -10,6 +10,7 @@ date_gmt: '2013-05-30 01:39:38 -0400'
 categories: []
 tags: []
 comments: []
+main_nav: true
 ---
 <img src="https://secure.gravatar.com/avatar/89ca4fe6c6ff77be6c2f76a3e9db195f?s=600" alt="Photo" class="profile">
 

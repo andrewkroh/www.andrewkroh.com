@@ -1,7 +1,8 @@
 # External gems
 gems:
-  - jekyll-archives
   - jekyll-sitemap
+  - jekyll-archives
+  - jekyll-paginate
 
 exclude:
   - "/vendor/"
@@ -11,13 +12,13 @@ title: Tech Blog
 subtitle: "Blogging So I Don't Forget"
 name:  Andrew Kroh
 email: andrew.kroh@crowbird.com
-description: > 
+description: >
   I am Andrew Kroh, a software engineer from northern Virginia.
 url: "https://www.andrewkroh.com"
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
-baseurl: 
+baseurl:
 cover: "/assets/header_image.jpg"
 logo: "/assets/logo.png"
 
@@ -26,12 +27,14 @@ markdown: kramdown
 kramdown:
   input: GFM
   hard_wrap: false
+  # REF: http://stackoverflow.com/a/25597026/503798
+  smart_quotes: ["apos", "apos", "quot", "quot"]
 paginate: 5
 paginate_path: "/page:num/"
 
 # Archive settings (see https://github.com/jekyll/jekyll-archives/)
-jekyll-archives: 
-  enabled: 
+jekyll-archives:
+  enabled:
     - categories
     - tags
   layout: 'archive'
@@ -56,7 +59,7 @@ descriptions:
 # Social settings are used in two places:
 # * In the footer, as links to your personal profiles
 # * After each blog post for sharing widgets
-# 
+#
 # social:
 #   - name: Twitter                         # Name of the service
 #     icon: twitter                         # Font Awesome icon to use (minus fa- prefix)

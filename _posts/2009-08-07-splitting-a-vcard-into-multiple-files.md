@@ -9,7 +9,7 @@ date_gmt: '2009-08-07 06:11:35 -0400'
 categories:
 - uncategorized
 tags:
-  - perl
+- perl
 ---
 Recently I wanted to sync my contact list from Google Mail to my old Samsung
 Gleam SCH-U700 via Bluetooth. From Google Mail I exported a single vCard file

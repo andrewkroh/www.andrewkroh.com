@@ -5,7 +5,8 @@ cover: /assets/uploads/2016/kibana-user-agent-dark.png
 excerpt: How to parse User-Agent strings from Packetbeat using Logstash.
 published: true
 author: Andrew Kroh
-date: '2016-01-24 16:10:00 -5000'
+date: '2016-01-24 16:10:00 -0500'
+date_gmt: '2016-01-24 16:10:00 -0500'
 categories:
   - beats
 tags: []
