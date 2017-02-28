@@ -2,7 +2,7 @@ SERVE_HOST ?= 127.0.0.1
 
 all: build
 
-build:
+site:
 	bundler exec jekyll build
 
 proof:
