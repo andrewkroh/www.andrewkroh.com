@@ -1,6 +1,7 @@
 SERVE_HOST ?= 127.0.0.1
 
-all: build
+all:
+	$(MAKE) docker CMD="make deps serve"
 
 site:
 	bundler exec jekyll build
