@@ -1,16 +1,13 @@
-sudo: false
-language: ruby
-rvm:
-  - 2.3.1
+dist: bionic
 
 before_install:
   - pip install --user awscli
   - export PATH=$PATH:$HOME/.local/bin
 
 install:
-  - make deps
+  - make docker CMD="make deps"
 script:
-  - make site
+  - make docker CMD="make site"
 
 env:
   global:
