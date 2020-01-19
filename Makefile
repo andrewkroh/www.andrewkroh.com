@@ -19,7 +19,7 @@ deps:
 	bundler install --path vendor/cache
 
 prod:
-	aws s3 sync _site/ s3://andrewkroh.com --acl public-read --delete
+	aws s3 sync _site/ s3://www.andrewkroh.com --delete
 
 image:
 	docker build -t www_andrewkroh_com .
