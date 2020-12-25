@@ -14,3 +14,6 @@ indent_size = 2
 [*.{md,markdown,yml}]
 indent_style = spaces
 indent_size = 2
+
+[Makefile*]
+indent_style = tab

@@ -26,6 +26,7 @@ image:
 
 docker: image
 	docker run -i --rm \
+	  $(shell if test -z "$$CI"; then echo "-t"; fi) \
 	  -v $(PWD):/site \
 	  -p 127.0.0.1:4000:4000 \
 	  -e "SERVE_HOST=0.0.0.0" \
